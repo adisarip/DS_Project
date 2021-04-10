@@ -14,11 +14,11 @@ There are many spanning tree based termination detection algorithms in the distr
 >- **<to be continued ...>**
 
 ## Environment Details
-> Operating System:  _Mac OSX / Linux_
-> Package Installer : _Homebrew/apt-get_
-> Compiler : _mpic++_
-> Scripting : _python3_
-> Additonal Packages : _OpenMPI_
+> Operating System:  _Mac OSX / Linux_  
+> Package Installer : _Homebrew/apt-get_  
+> Compiler : _mpic++_  
+> Scripting : _python3_  
+> Additonal Packages : _OpenMPI_  
 
 ## Source Tree
 >- Given below is the source tree for the current assignment.
@@ -47,10 +47,10 @@ There are many spanning tree based termination detection algorithms in the distr
 > 5 directories, 15 files
 >```
 
->- 'src/' : Directory containing all the source code & utility files.
->- 'obj/' : Directory containing all temporary object files.
->- 'bin/' : Directory containing the executable binary files.
->- 'test/' : Directory containing the test data
+>- './src/' : Directory containing all the source code & utility files.
+>- './obj/' : Directory containing all temporary object files.
+>- './bin/' : Directory containing the executable binary files.
+>- './test/' : Directory containing the test data
 >- Graph.h/cpp : A class implementing the graph algorithm for computing Minimum Spanning Tree.
 >- GraphUtils.h/cpp : Implementation of Union-Find data structure, used while computing MST.
 >- TerminationDetection.cpp : Main file to compute the MST and initiate the termination detection algorithm.
