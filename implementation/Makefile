@@ -5,7 +5,7 @@
 ###############################################################################
 
 TARGET  = sttd
-CC      = g++
+CC      = mpic++
 CCFLAGS = -Wall -std=c++1z
 SRCDIR  = ./src
 OBJDIR  = ./obj
@@ -15,14 +15,13 @@ FILES   := $(wildcard $(SRCDIR)/*.cpp)
 OBJECTS := $(FILES:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 
 $(BINDIR)/$(TARGET): $(OBJECTS)
-	$(CC) $(OBJECTS) -o $@
-	@echo "Linking Complete."
-	@echo "To start the termination detection run --> "$(BINDIR)"/"$(TARGET)
+	@$(CC) $(OBJECTS) -o $@
+	@echo "[MAKE] Linking Complete."
 
 $(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.cpp
-	$(CC) $(CCFLAGS) -c $< -o $@
-	@echo "Compiled "$<" successfully."
+	@$(CC) $(CCFLAGS) -c $< -o $@
+	@echo "[MAKE] Compiled "$<" successfully."
 
 clean:
-	@echo "Cleaning all the object files and binaries."
-	rm -f core $(OBJECTS) $(BINDIR)/$(TARGET)
+	@echo "[MAKE] Cleaning all the object files and binaries."
+	@rm -f core $(OBJECTS) $(BINDIR)/$(TARGET)

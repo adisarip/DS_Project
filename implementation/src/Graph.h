@@ -9,6 +9,7 @@
 
 #include <vector>
 #include <unordered_set>
+#include <string>
 using namespace std;
 
 // Graph Class - Declarations
@@ -25,15 +26,18 @@ class Graph
 {
 public:
     Graph(int nodeCount);
+    Graph(string fileName);
     ~Graph();
-    void addEdge(const int u, const int v, const int w);
     void displayMST();
+    void displayGraph();
     void computeMST();
+protected:
+    void addEdge(const int u, const int v, const int w);
     bool isMSTValid();
+    void parseInputData(string fileName);
 private:
     int mNodesCount;
     int mEdgesCount;
-    int mMSTSize;
     bool mIsMSTValid;
     vector<Edge*> mEdgeList;
     vector<Edge*> mMST;

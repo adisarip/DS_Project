@@ -1,5 +1,7 @@
 
 #include "GraphUtils.h"
+#include <iostream>
+using namespace std;
 
 // Utility functions for the Graph algorithmic computations
 
