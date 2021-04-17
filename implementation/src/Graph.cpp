@@ -79,11 +79,22 @@ void Graph::displayGraph()
 
 void Graph::displayMST()
 {
-    cout << "[INFO] Displaying MST of the graph : " << mMST.size() << " edges." <<  endl;
-    for (int i=0; i < (int)mMST.size(); i++)
+    cout << "[INFO] Displaying MST of the given graph:" <<  endl;
+    for (int i=0; i < mNodesCount; i++)
     {
-        cout << "    [" << mMST[i]->src  << "--" << "(" << mMST[i]->weight << ")" << "--"
-             << mMST[i]->dest << "]" << endl;
+        int row_size = mMSTAdjList[i].size();
+        cout << i << " -> " << flush;
+        for (int j=0; j < row_size; j++)
+        {
+            if (j == row_size-1)
+            {
+                cout << mMSTAdjList[i][j] << endl;
+            }
+            else
+            {
+                cout << mMSTAdjList[i][j] << "," << flush;
+            }
+        }
     }
 }
 
@@ -97,13 +108,16 @@ void Graph::addEdge(const int u, const int v, const int w)
     mEdgesCount++;
 }
 
-void Graph::computeMST()
+void Graph::createAndConfigureSpanningTree()
 {
     if (mEdgeList.size() == 0)
     {
         mIsMSTValid = false;
         return;
     }
+
+    mMSTAdjList = new vector<int>[mNodesCount+1];
+    vector<Edge*> sMST;
 
     //mMST.resize(mNodesCount);
 
@@ -128,19 +142,21 @@ void Graph::computeMST()
         int y = Find(subsets, pNextEdge->dest);
         if (x != y)
         {
-            //mMST[e_mst++] = pNextEdge;
-            mMST.push_back(pNextEdge);
+            sMST.push_back(pNextEdge);
             Union(subsets, x, y);
             mst_size++;
+            // create the adjacency list of the MST
+            mMSTAdjList[pNextEdge->src].push_back(pNextEdge->dest);
+            mMSTAdjList[pNextEdge->dest].push_back(pNextEdge->src);
         }
     }
 
     // verify for the edges in the MST Union-Find returns the same subset
     // if not then the graph is not connected and MST donot exists
-    int sParent = Find(subsets, mMST[0]->src);
-    for (int i = 1; i < (int)mMST.size(); i++)
+    int sParent = Find(subsets, sMST[0]->src);
+    for (int i = 1; i < (int)sMST.size(); i++)
     {
-        if (sParent != Find(subsets, mMST[i]->src))
+        if (sParent != Find(subsets, sMST[i]->src))
         {
             mIsMSTValid = false;
             break;
@@ -151,6 +167,16 @@ void Graph::computeMST()
 bool Graph::isMSTValid()
 {
     return mIsMSTValid;
+}
+
+int Graph::getRootNode()
+{
+
+}
+
+int Graph::getLeafNodes(int* leafNodes)
+{
+
 }
 
 // Helper functions

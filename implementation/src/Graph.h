@@ -12,7 +12,7 @@
 #include <string>
 using namespace std;
 
-// Graph Class - Declarations
+// Edge of a graph
 struct Edge
 {
     Edge (){};
@@ -22,6 +22,7 @@ struct Edge
     int weight; // Edge Weight
 };
 
+// Graph Class - Declarations
 class Graph
 {
 public:
@@ -30,7 +31,9 @@ public:
     ~Graph();
     void displayMST();
     void displayGraph();
-    void computeMST();
+    void createAndConfigureSpanningTree();
+    int getLeafNodes(int* leafNodes); // return value = the count of leaf nodes
+    int getRootNode();
 protected:
     void addEdge(const int u, const int v, const int w);
     bool isMSTValid();
@@ -40,7 +43,7 @@ private:
     int mEdgesCount;
     bool mIsMSTValid;
     vector<Edge*> mEdgeList;
-    vector<Edge*> mMST;
+    vector<int>* mMSTAdjList;
     unordered_set<int> mNodes;
 };
 
