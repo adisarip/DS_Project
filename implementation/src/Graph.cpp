@@ -219,6 +219,7 @@ void Graph::fillMessageRoutingTable(int currentNode,
             {
                 sRouteMap[currentNode][i] = parentNode;
             }
+            sRouteMap[i][i] = -1;
         }
     }
 }
