@@ -245,15 +245,6 @@ int main (int argc, char* argv[])
         Node sNode(sProcId);
         configureProcessNode(&sNode);
 
-        //sNode.displayNodeData();
-
-        //printf("[INFO][sProcId:%d] Before barrier\n", sProcId);
-
-        // Synchronizing all the processes before initiating termination detection algorithm
-        //MPI_Barrier(MPI_COMM_WORLD);
-
-        //printf("[INFO][sProcId:%d] After barrier\n", sProcId);
-
         // set node status and token type
         sNode.setNodeStatus(STATE_ACTIVE);
         sNode.setToken(TOKEN_WHITE);
