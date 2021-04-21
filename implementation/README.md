@@ -26,8 +26,7 @@ There are many spanning tree based termination detection algorithms in the distr
 > ├── Makefile
 > ├── README.md
 > ├── bin
-> │   ├── README.md
-> │   └── sttd
+> │   └── README.md
 > ├── design
 > │   └── STBTD_Design.docx
 > ├── obj
@@ -36,15 +35,15 @@ There are many spanning tree based termination detection algorithms in the distr
 > ├── src
 > │   ├── Graph.cpp
 > │   ├── Graph.h
-> │   ├── GraphUtils.cpp
-> │   ├── GraphUtils.h
-> │   ├── README.md
-> │   └── TerminationDetection.cpp
+> │   ├── Node.cpp
+> │   ├── Node.h
+> │   ├── TerminationDetection.cpp
+> │   └── README.md
 > └── test
 >     ├── README.md
 >     └── input.txt
 >
-> 5 directories, 15 files
+> 5 directories, 14 files
 >```
 
 >- './src/' : Directory containing all the source code & utility files.
@@ -52,7 +51,7 @@ There are many spanning tree based termination detection algorithms in the distr
 >- './bin/' : Directory containing the executable binary files.
 >- './test/' : Directory containing the test data
 >- Graph.h/cpp : A class implementing the graph algorithm for computing Minimum Spanning Tree.
->- GraphUtils.h/cpp : Implementation of Union-Find data structure, used while computing MST.
+>- Node.h/cpp  : A class defining the Process Node and its internal methods.
 >- TerminationDetection.cpp : Main file to compute the MST and initiate the termination detection algorithm.
 >- Run the command **'make clean; make'** from the parent directory to create the executable binaries.
 
@@ -67,7 +66,7 @@ There are many spanning tree based termination detection algorithms in the distr
 > # <source_vertex> <destination_vertex> <edge_weight>
 > # ...
 > #####################################################
-> 12
+> 11
 > 1 2 10
 > 1 3 7
 > 1 4 6
@@ -81,14 +80,11 @@ There are many spanning tree based termination detection algorithms in the distr
 > 5 7 5
 > 5 9 2
 > 6 8 2
-> 6 12 13
+> 6 11 13
 > 7 10 6
-> 7 11 10
-> 7 12 9
-> 8 12 7
+> 7 11 9
+> 8 11 7
 > 9 10 17
-> 10 11 9
-> 11 12 3
 >```
 
 **_Sample Execution Run:_**
@@ -97,7 +93,7 @@ There are many spanning tree based termination detection algorithms in the distr
 > **./run_td.py <input_file\> <no_of_processes\>**
 >
 >```
-> $ ./run_td.py test/input.txt 1
+> $ ./run_td.py test/input.txt
 > [INFO] Building binaries ...
 > [MAKE] Cleaning all the object files and binaries.
 > [MAKE] Compiled src/Graph.cpp successfully.
