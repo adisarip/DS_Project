@@ -34,8 +34,7 @@ void configureAndInitiateMasterProcess(string fileName,
     int sRoutingMap[sSize][sSize];
     fill(*sRoutingMap, (*sRoutingMap + sSize * sSize), -1);
 
-    //int sRootNode = sGraph.getRootNode();
-    int sRootNode = 5; // using '5' just for better tree structure with more leaf nodes.
+    int sRootNode = sGraph.getRootNode();
     printf("[INFO] Root Node: %d\n", sRootNode);
     sGraph.fillMessageRoutingTable(sRootNode,
                                    sRootNode,

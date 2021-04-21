@@ -115,29 +115,29 @@ There are many spanning tree based termination detection algorithms in the distr
 > 9 -> 5,4
 > 10 -> 7
 > 11 -> 8
-> [INFO] Root Node: 5
-> [INFO] Process#3 is done with internal computations
-> [INFO] LeafNode[3] intitiating Termination Detection
-> [INFO] Process#2 is done with internal computations
-> [INFO] InternalNode[2] Received all tokens from child nodes. Sending token to ParentNode[4]
+> [INFO] Root Node: 2
+> [INFO] Process#6 is done with internal computations
 > [INFO] Process#11 is done with internal computations
 > [INFO] LeafNode[11] intitiating Termination Detection
-> [INFO] Process#7 is done with internal computations
-> [INFO] Process#4 is done with internal computations
-> [INFO] Process#9 is done with internal computations
+> [INFO] Process#2 is done with internal computations
 > [INFO] Process#1 is done with internal computations
 > [INFO] LeafNode[1] intitiating Termination Detection
-> [INFO] InternalNode[4] Received all tokens from child nodes. Sending token to ParentNode[9]
-> [INFO] InternalNode[9] Received all tokens from child nodes. Sending token to ParentNode[5]
-> [INFO] Process#6 is done with internal computations
+> [INFO] Process#3 is done with internal computations
+> [INFO] LeafNode[3] intitiating Termination Detection
+> [INFO] Process#4 is done with internal computations
 > [INFO] Process#8 is done with internal computations
 > [INFO] InternalNode[8] Received all tokens from child nodes. Sending token to ParentNode[6]
 > [INFO] InternalNode[6] Received all tokens from child nodes. Sending token to ParentNode[5]
+> [INFO] Process#5 is done with internal computations
+> [INFO] Process#9 is done with internal computations
+> [INFO] Process#7 is done with internal computations
 > [INFO] Process#10 is done with internal computations
 > [INFO] LeafNode[10] intitiating Termination Detection
 > [INFO] InternalNode[7] Received all tokens from child nodes. Sending token to ParentNode[5]
-> [INFO] Process#5 is done with internal computations
-> [INFO] RootNode[5] Received all tokens from child nodes.
+> [INFO] InternalNode[5] Received all tokens from child nodes. Sending token to ParentNode[9]
+> [INFO] InternalNode[9] Received all tokens from child nodes. Sending token to ParentNode[4]
+> [INFO] InternalNode[4] Received all tokens from child nodes. Sending token to ParentNode[2]
+> [INFO] RootNode[2] Received all tokens from child nodes.
 > [INFO] Termination Detection completed
 > $
 >```
