@@ -46,7 +46,7 @@ Graph::~Graph()
 
 void Graph::displayMST()
 {
-    cout << "[INFO] Displaying MST of the given graph:" <<  endl;
+    cout << "[INFO] Displaying MST of the given graph as an Adjacency List:" <<  endl;
     for (int i=1; i <= mNodesCount; i++)
     {
         int row_size = mMSTAdjList[i].size();

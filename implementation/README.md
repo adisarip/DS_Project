@@ -101,23 +101,48 @@ There are many spanning tree based termination detection algorithms in the distr
 > [INFO] Building binaries ...
 > [MAKE] Cleaning all the object files and binaries.
 > [MAKE] Compiled src/Graph.cpp successfully.
-> [MAKE] Compiled src/GraphUtils.cpp successfully.
+> [MAKE] Compiled src/Node.cpp successfully.
 > [MAKE] Compiled src/TerminationDetection.cpp successfully.
 > [MAKE] Linking Complete.
-> [INFO] No of Nodes in the given graph: 12
-> [INFO] Initiating Termination Detection with 1 process.
-> [INFO] Displaying MST of the graph : 11 edges.
->     [6--(2)--8]
->     [5--(2)--9]
->     [11--(3)--12]
->     [2--(3)--4]
->     [2--(4)--3]
->     [5--(5)--7]
->     [5--(5)--6]
->     [4--(5)--9]
->     [1--(6)--4]
->     [7--(6)--10]
->     [8--(7)--12]
+> [INFO] No of Nodes in the given graph: 11
+> [INFO] Initiating Termination Detection with 12 processes (1 process per node and 1 additional master/manager process).
+> [INFO] MASTER Process configuring and setting the process(s) environment
+> [INFO] Displaying MST of the given graph as an Adjacency List:
+> 1 -> 4
+> 2 -> 4,3
+> 3 -> 2
+> 4 -> 2,9,1
+> 5 -> 9,6,7
+> 6 -> 8,5
+> 7 -> 5,10
+> 8 -> 6,11
+> 9 -> 5,4
+> 10 -> 7
+> 11 -> 8
+> [INFO] Root Node: 5
+> [INFO] Process#3 is done with internal computations
+> [INFO] LeafNode[3] intitiating Termination Detection
+> [INFO] Process#2 is done with internal computations
+> [INFO] InternalNode[2] Received all tokens from child nodes. Sending token to ParentNode[4]
+> [INFO] Process#11 is done with internal computations
+> [INFO] LeafNode[11] intitiating Termination Detection
+> [INFO] Process#7 is done with internal computations
+> [INFO] Process#4 is done with internal computations
+> [INFO] Process#9 is done with internal computations
+> [INFO] Process#1 is done with internal computations
+> [INFO] LeafNode[1] intitiating Termination Detection
+> [INFO] InternalNode[4] Received all tokens from child nodes. Sending token to ParentNode[9]
+> [INFO] InternalNode[9] Received all tokens from child nodes. Sending token to ParentNode[5]
+> [INFO] Process#6 is done with internal computations
+> [INFO] Process#8 is done with internal computations
+> [INFO] InternalNode[8] Received all tokens from child nodes. Sending token to ParentNode[6]
+> [INFO] InternalNode[6] Received all tokens from child nodes. Sending token to ParentNode[5]
+> [INFO] Process#10 is done with internal computations
+> [INFO] LeafNode[10] intitiating Termination Detection
+> [INFO] InternalNode[7] Received all tokens from child nodes. Sending token to ParentNode[5]
+> [INFO] Process#5 is done with internal computations
+> [INFO] RootNode[5] Received all tokens from child nodes.
+> [INFO] Termination Detection completed
 > $
 >```
 
