@@ -3,11 +3,20 @@
 #include <iostream>
 #include <cstring>
 #include <cstdio>
+#include <cstdlib>
+#include <ctime>
 #include "mpi.h"
 #include "Graph.h"
 #include "Node.h"
 #include "TerminationDetection.h"
 using namespace std;
+
+void getRandomSourceDestinationPair(ComputeMessage* pMessage, int worldSize)
+{
+    srand(time(0));
+    pMessage->srcNode = rand() % (worldSize) + 1;
+    pMessage->dstNode = rand() % (worldSize) + 1;
+}
 
 // Read the data file
 // Create the graph and compute the MST
@@ -72,6 +81,19 @@ void configureAndInitiateMasterProcess(string fileName, int worldSize)
                  sDestProcId,
                  MSG_CONFIG,
                  MPI_COMM_WORLD);
+
+        // Randomly generate a source-destination node pair for sending a COMPUTE message.
+        ComputeMessage sComputeMessage;
+        getRandomSourceDestinationPair(&sComputeMessage, worldSize);
+        memset(sMsgBuffer, -1, sizeof(int) * MAX_MSG_SIZE);
+        sMsgBuffer[0] = sComputeMessage.srcNode;
+        sMsgBuffer[1] = sComputeMessage.dstNode;
+        MPI_Send(sMsgBuffer,
+                 2,
+                 MPI_INT,
+                 sDestProcId,
+                 MSG_CONFIG,
+                 MPI_COMM_WORLD);
     }
 
     // Now wait for a signal from the root node after the termination detection algorithm is
@@ -101,54 +123,9 @@ void configureAndInitiateMasterProcess(string fileName, int worldSize)
     fflush(stdout);
 }
 
-// Create a Node object for each node process, and save the relevant data in it.
-void configureAndInitiateNodeProcess(int procId)
-{
-    Node sNode(procId);
-    configureProcessNode(&sNode);
-
-    // set node status and token type
-    sNode.setNodeStatus(STATE_ACTIVE);
-    sNode.setToken(TOKEN_WHITE);
-
-    // run node/process specific computations
-    sNode.runComputations();
-    printf("[INFO] Process[%d] is done with internal computations\n", procId);
-    fflush(stdout);
-
-    // Testing REPEAT signal - Feel free to change the node ids based on the test data.
-    // Suppose the nodes 3(LeafNode) & 5(InternalNode) have sent some messages after or during
-    // computations to some other node(s), before sending the token to ParentNode.
-    // Then they will be sending BLACK tokens.
-    if (sNode.getNodeId() == 3) sNode.setToken(TOKEN_BLACK);
-    if (sNode.getNodeId() == 5) sNode.setToken(TOKEN_BLACK);
-
-    // post computations initiate the termination detection protocol
-    // There would be three types of nodes
-    // Root Node, Internal Node, Leaf Node.
-    // Termination detection is initiated only by the leaf nodes
-    ReturnCode sRc = RC_SUCCESS;
-    if (sNode.isLeafNode())
-    {
-        do
-        {
-            sRc = initiateTerminationDetection(&sNode);
-        }while (RC_RETRY == sRc);
-    }
-    else if (sNode.isRootNode())
-    {
-        initiateRootNodeProcess(&sNode);
-    }
-    else
-    {
-        // Internal Node
-        initiateInternalNodeProcess(&sNode);
-    }
-}
-
 
 // Process Node Intialization
-void configureProcessNode(Node* pNode)
+void configureNodeProcess(Node* pNode)
 {
     int sMsgBuffer[MAX_MSG_SIZE];
     MPI_Status sMsgStatus;
@@ -189,6 +166,77 @@ void configureProcessNode(Node* pNode)
              &sMsgStatus);
     MPI_Get_count(&sMsgStatus, MPI_INT, &sMsgSize);
     pNode->setChildNodes(sMsgBuffer, sMsgSize);
+
+    // set the random compute message details
+    memset(sMsgBuffer, -1, sizeof(int) * MAX_MSG_SIZE);
+    MPI_Recv(sMsgBuffer,
+             MAX_MSG_SIZE,
+             MPI_INT,
+             MASTER,
+             MSG_CONFIG,
+             MPI_COMM_WORLD,
+             &sMsgStatus);
+    if (pNode->getNodeId() == sMsgBuffer[0])
+    {
+        ComputeMessage sMsg;
+        sMsg.srcNode = sMsgBuffer[0];
+        sMsg.dstNode = sMsgBuffer[1];
+        pNode->setComputeMessage(&sMsg);
+    }
+}
+
+// Create a Node object for each node process, and save the relevant data in it.
+void configureAndInitiateNodeProcess(int procId)
+{
+    Node sNode(procId);
+    configureNodeProcess(&sNode);
+
+    // set node status and token type
+    sNode.setNodeStatus(STATE_ACTIVE);
+    sNode.setToken(TOKEN_WHITE);
+
+    // run node/process specific computations
+    sNode.runComputations();
+    // A COMPUTE message is sent as part of the above computations
+    ComputeMessage sCMsg;
+    sNode.getComputeMessage(&sCMsg);
+    if (sCMsg.srcNode == sNode.getNodeId())
+    {
+        int msg = 0;
+        MPI_Send(&msg,
+                 1,
+                 MPI_INT,
+                 sCMsg.dstNode,
+                 MSG_COMPUTE,
+                 MPI_COMM_WORLD);
+        printf("[INFO] Node[%d] sent a COMPUTE message to Node[%d]\n", sCMsg.srcNode, sCMsg.dstNode);
+        fflush(stdout);
+        sNode.setToken(TOKEN_BLACK);
+    }
+    printf("[INFO] Node[%d] is done with internal computations\n", procId);
+    fflush(stdout);
+
+    // post computations initiate the termination detection protocol
+    // There would be three types of nodes
+    // Root Node, Internal Node, Leaf Node.
+    // Termination detection is initiated only by the leaf nodes
+    ReturnCode sRc = RC_SUCCESS;
+    if (sNode.isLeafNode())
+    {
+        do
+        {
+            sRc = initiateTerminationDetection(&sNode);
+        }while (RC_RETRY == sRc);
+    }
+    else if (sNode.isRootNode())
+    {
+        initiateRootNodeProcess(&sNode);
+    }
+    else
+    {
+        // Internal Node
+        initiateInternalNodeProcess(&sNode);
+    }
 }
 
 
@@ -237,6 +285,13 @@ ReturnCode initiateTerminationDetection(Node* pNode)
                     pNode->getNodeId(), pNode->getParentNode());
             fflush(stdout);
             break;
+        }
+        else if (MSG_COMPUTE == sMsgStatus.MPI_TAG)
+        {
+            // Received a COMPUTE message from another node.
+            // Just acknowledge that it is received.
+            printf("[INFO] LeafNode[%d] Received the COMPUTE message from Node[%d]\n",
+                    pNode->getNodeId(), sMsgStatus.MPI_SOURCE);
         }
         else if (MSG_KILL == sMsgStatus.MPI_TAG)
         {
@@ -331,6 +386,14 @@ ReturnCode initiateRootNodeProcess(Node* pNode)
                 }
             }
         }
+        else if (MSG_COMPUTE == sMsgStatus.MPI_TAG)
+        {
+            // Received a COMPUTE message from another node.
+            // Just acknowledge that it is received.
+            printf("[INFO] RootNode[%d] Received the COMPUTE message from Node[%d]\n",
+                    pNode->getNodeId(), sMsgStatus.MPI_SOURCE);
+            fflush(stdout);
+        }
         else if (MSG_KILL == sMsgStatus.MPI_TAG)
         {
             sRc = RC_SUCCESS;
@@ -414,6 +477,14 @@ ReturnCode initiateInternalNodeProcess(Node* pNode)
                     pNode->setToken(TOKEN_WHITE);
                 }
             }
+        }
+        else if (MSG_COMPUTE == sMsgStatus.MPI_TAG)
+        {
+            // Received a COMPUTE message from another node.
+            // Just acknowledge that it is received.
+            printf("[INFO] InternalNode[%d] Received the COMPUTE message from Node[%d]\n",
+                    pNode->getNodeId(), sMsgStatus.MPI_SOURCE);
+            fflush(stdout);
         }
         else if (MSG_KILL == sMsgStatus.MPI_TAG)
         {

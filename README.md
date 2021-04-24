@@ -127,79 +127,81 @@ There are many spanning tree based termination detection algorithms in the distr
 > 10 -> 7
 > 11 -> 8
 > [INFO] Root Node: 2
-> [INFO] Process[3] is done with internal computations
+> [INFO] Node[10] is done with internal computations
+> [INFO] LeafNode[10] initiating Termination Detection
+> [INFO] Node[4] is done with internal computations
+> [INFO] Node[5] is done with internal computations
+> [INFO] Node[6] is done with internal computations
+> [INFO] Node[11] is done with internal computations
+> [INFO] LeafNode[11] initiating Termination Detection
+> [INFO] Node[2] is done with internal computations
+> [INFO] Node[9] is done with internal computations
+> [INFO] Node[3] is done with internal computations
 > [INFO] LeafNode[3] initiating Termination Detection
-> [INFO] Process[7] is done with internal computations
-> [INFO] Process[8] is done with internal computations
-> [INFO] Process[4] is done with internal computations
-> [INFO] Process[1] is done with internal computations
+> [INFO] RootNode[2] Received Token[1] from ChildNode[3]
+> [INFO] Node[1] is done with internal computations
 > [INFO] LeafNode[1] initiating Termination Detection
 > [INFO] InternalNode[4] Received Token[1] from ChildNode[1]
-> [INFO] Process[10] is done with internal computations
-> [INFO] LeafNode[10] initiating Termination Detection
+> [INFO] Node[8] sent a COMPUTE message to Node[7]
+> [INFO] Node[8] is done with internal computations
+> [INFO] InternalNode[8] Received Token[1] from ChildNode[11]
+> [INFO] InternalNode[8] Received all tokens from child nodes. Sending Token[0] to ParentNode[6]
+> [INFO] InternalNode[6] Received Token[0] from ChildNode[8]
+> [INFO] InternalNode[6] Received all tokens from child nodes. Sending Token[0] to ParentNode[5]
+> [INFO] InternalNode[5] Received Token[0] from ChildNode[6]
+> [INFO] Node[7] is done with internal computations
 > [INFO] InternalNode[7] Received Token[1] from ChildNode[10]
 > [INFO] InternalNode[7] Received all tokens from child nodes. Sending Token[1] to ParentNode[5]
-> [INFO] Process[6] is done with internal computations
-> [INFO] Process[11] is done with internal computations
-> [INFO] LeafNode[11] initiating Termination Detection
-> [INFO] InternalNode[8] Received Token[1] from ChildNode[11]
-> [INFO] InternalNode[8] Received all tokens from child nodes. Sending Token[1] to ParentNode[6]
-> [INFO] InternalNode[6] Received Token[1] from ChildNode[8]
-> [INFO] InternalNode[6] Received all tokens from child nodes. Sending Token[1] to ParentNode[5]
-> [INFO] Process[2] is done with internal computations
-> [INFO] RootNode[2] Received Token[0] from ChildNode[3].
-> [INFO] Process[5] is done with internal computations
 > [INFO] InternalNode[5] Received Token[1] from ChildNode[7]
-> [INFO] InternalNode[5] Received Token[1] from ChildNode[6]
 > [INFO] InternalNode[5] Received all tokens from child nodes. Sending Token[0] to ParentNode[9]
-> [INFO] Process[9] is done with internal computations
+> [INFO] InternalNode[7] Received the COMPUTE message from Node[8]
 > [INFO] InternalNode[9] Received Token[0] from ChildNode[5]
 > [INFO] InternalNode[9] Received all tokens from child nodes. Sending Token[0] to ParentNode[4]
 > [INFO] InternalNode[4] Received Token[0] from ChildNode[9]
 > [INFO] InternalNode[4] Received all tokens from child nodes. Sending Token[0] to ParentNode[2]
-> [INFO] RootNode[2] Received Token[0] from ChildNode[4].
+> [INFO] RootNode[2] Received Token[0] from ChildNode[4]
 > [INFO] RootNode[2] Received a BLACK token. Initiating REPEAT Signal
-> [INFO] RootNode[2] Sent REPEAT Signal to ChildNode[4].
-> [INFO] RootNode[2] Sent REPEAT Signal to ChildNode[3].
-> [INFO] RootNode[2] Received Token[1] from ChildNode[3].
-> [INFO] InternalNode[4] Received a REPEAT request from ParentNode[2].
-> [INFO] InternalNode[4] Forwarding REPEAT signal to ChildNode[9].
-> [INFO] InternalNode[4] Forwarding REPEAT signal to ChildNode[1].
-> [INFO] InternalNode[9] Received a REPEAT request from ParentNode[4].
-> [INFO] InternalNode[9] Forwarding REPEAT signal to ChildNode[5].
+> [INFO] RootNode[2] Sent REPEAT Signal to ChildNode[4]
+> [INFO] RootNode[2] Sent REPEAT Signal to ChildNode[3]
+> [INFO] InternalNode[4] Received a REPEAT request from ParentNode[2]
+> [INFO] InternalNode[4] Forwarding REPEAT signal to ChildNode[9]
+> [INFO] InternalNode[4] Forwarding REPEAT signal to ChildNode[1]
 > [INFO] LeafNode[1] Received a REPEAT request from ParentNode[4]
 > [INFO] LeafNode[1] initiating Termination Detection
+> [INFO] RootNode[2] Received Token[1] from ChildNode[3]
 > [INFO] LeafNode[3] Received a REPEAT request from ParentNode[2]
 > [INFO] LeafNode[3] initiating Termination Detection
 > [INFO] InternalNode[4] Received Token[1] from ChildNode[1]
-> [INFO] InternalNode[5] Received a REPEAT request from ParentNode[9].
-> [INFO] InternalNode[5] Forwarding REPEAT signal to ChildNode[6].
-> [INFO] InternalNode[5] Forwarding REPEAT signal to ChildNode[7].
-> [INFO] InternalNode[6] Received a REPEAT request from ParentNode[5].
-> [INFO] InternalNode[6] Forwarding REPEAT signal to ChildNode[8].
-> [INFO] InternalNode[7] Received a REPEAT request from ParentNode[5].
-> [INFO] InternalNode[7] Forwarding REPEAT signal to ChildNode[10].
+> [INFO] InternalNode[5] Received a REPEAT request from ParentNode[9]
+> [INFO] InternalNode[5] Forwarding REPEAT signal to ChildNode[6]
+> [INFO] InternalNode[5] Forwarding REPEAT signal to ChildNode[7]
+> [INFO] InternalNode[9] Received a REPEAT request from ParentNode[4]
+> [INFO] InternalNode[9] Forwarding REPEAT signal to ChildNode[5]
+> [INFO] InternalNode[6] Received a REPEAT request from ParentNode[5]
+> [INFO] InternalNode[6] Forwarding REPEAT signal to ChildNode[8]
+> [INFO] InternalNode[7] Received a REPEAT request from ParentNode[5]
+> [INFO] InternalNode[7] Forwarding REPEAT signal to ChildNode[10]
 > [INFO] InternalNode[7] Received Token[1] from ChildNode[10]
 > [INFO] InternalNode[7] Received all tokens from child nodes. Sending Token[1] to ParentNode[5]
-> [INFO] InternalNode[8] Received a REPEAT request from ParentNode[6].
-> [INFO] InternalNode[8] Forwarding REPEAT signal to ChildNode[11].
+> [INFO] InternalNode[8] Received a REPEAT request from ParentNode[6]
+> [INFO] InternalNode[8] Forwarding REPEAT signal to ChildNode[11]
 > [INFO] InternalNode[8] Received Token[1] from ChildNode[11]
 > [INFO] InternalNode[8] Received all tokens from child nodes. Sending Token[1] to ParentNode[6]
 > [INFO] LeafNode[10] Received a REPEAT request from ParentNode[7]
 > [INFO] LeafNode[10] initiating Termination Detection
-> [INFO] LeafNode[11] Received a REPEAT request from ParentNode[8]
-> [INFO] LeafNode[11] initiating Termination Detection
-> [INFO] InternalNode[4] Received Token[1] from ChildNode[9]
-> [INFO] InternalNode[4] Received all tokens from child nodes. Sending Token[1] to ParentNode[2]
 > [INFO] InternalNode[5] Received Token[1] from ChildNode[7]
 > [INFO] InternalNode[5] Received Token[1] from ChildNode[6]
 > [INFO] InternalNode[5] Received all tokens from child nodes. Sending Token[1] to ParentNode[9]
 > [INFO] InternalNode[6] Received Token[1] from ChildNode[8]
 > [INFO] InternalNode[6] Received all tokens from child nodes. Sending Token[1] to ParentNode[5]
+> [INFO] LeafNode[11] Received a REPEAT request from ParentNode[8]
+> [INFO] LeafNode[11] initiating Termination Detection
+> [INFO] RootNode[2] Received Token[1] from ChildNode[4]
+> [INFO] RootNode[2] Received all tokens from child nodes
+> [INFO] InternalNode[4] Received Token[1] from ChildNode[9]
+> [INFO] InternalNode[4] Received all tokens from child nodes. Sending Token[1] to ParentNode[2]
 > [INFO] InternalNode[9] Received Token[1] from ChildNode[5]
 > [INFO] InternalNode[9] Received all tokens from child nodes. Sending Token[1] to ParentNode[4]
-> [INFO] RootNode[2] Received Token[1] from ChildNode[4].
-> [INFO] RootNode[2] Received all tokens from child nodes.
 > [INFO] Termination Detection completed
 > $
 >```

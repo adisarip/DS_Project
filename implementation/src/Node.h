@@ -14,20 +14,16 @@ enum NodeStatus
     STATE_UNKNOWN = -1, // Node state while creation.
 };
 
-enum MessageType
-{
-    MSG_CONFIG  = 1, // A configuration message sent by the master process to worker process
-    MSG_DONE    = 2, // A done will be sent by the root node once it confirms that all the childs have terminated
-    MSG_KILL    = 3, // A kill message is sent by the master process to a worker process to stop and exit
-    MSG_COMPUTE = 4, // A message sent by a node to another during computation phase
-    MSG_TOKEN   = 5, // A token message sent by each process/node to its parent after termination
-    MSG_REPEAT  = 6, // A repeat signal is sent by the root node if it receives a BLACK token from one of its child node
-};
-
 enum Token
 {
     TOKEN_BLACK = 0, // A token turns black if the node sends a compute message to any other node.
     TOKEN_WHITE = 1, // A token is white by default
+};
+
+struct ComputeMessage
+{
+    int srcNode;
+    int dstNode;
 };
 
 class Node
@@ -42,6 +38,7 @@ public:
     void setChildNodes(int* buffer, int size);
     void setNodeStatus(NodeStatus nodeStatus);
     void setToken(Token token);
+    void setComputeMessage(ComputeMessage* pComputeMessage);
 
     int getNodeId();
     int getRootNode();
@@ -55,6 +52,7 @@ public:
 
     Token getToken();
     NodeStatus getNodeStatus();
+    void getComputeMessage(ComputeMessage* pComputeMessage);
 
     void runComputations();
 
@@ -65,6 +63,7 @@ private:
     int mRootNode;
     Token mToken;
     NodeStatus mNodeStatus;
+    ComputeMessage mComputeMessage;
     vector<int> mRouteMap;
     vector<int> mChildNodes;
 };

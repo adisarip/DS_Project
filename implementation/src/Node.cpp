@@ -16,6 +16,8 @@ Node::Node(int nodeId)
 ,mToken(TOKEN_WHITE)
 ,mNodeStatus(STATE_UNKNOWN)
 {
+    mComputeMessage.srcNode = -1;
+    mComputeMessage.dstNode = -1;
 }
 
 Node::~Node()
@@ -57,6 +59,12 @@ void Node::setChildNodes(int* buffer, int size)
     }
 }
 
+void Node::setComputeMessage(ComputeMessage* pComputeMessage)
+{
+    mComputeMessage.srcNode = pComputeMessage->srcNode;
+    mComputeMessage.dstNode = pComputeMessage->dstNode;
+}
+
 int Node::getNodeId()
 {
     return mId;
@@ -88,6 +96,12 @@ void Node::getChildNodes(vector<int>* pChildNodes)
     {
         pChildNodes->push_back(child);
     }
+}
+
+void Node::getComputeMessage(ComputeMessage* pComputeMessage)
+{
+    pComputeMessage->srcNode = mComputeMessage.srcNode;
+    pComputeMessage->dstNode = mComputeMessage.dstNode;
 }
 
 bool Node::isLeafNode()
