@@ -278,7 +278,7 @@ ReturnCode initiateRootNodeProcess(Node* pNode)
 
         if (MSG_TOKEN == sMsgStatus.MPI_TAG)
         {
-            printf("[INFO] RootNode[%d] Received Token[%d] from ChildNode[%d].\n",
+            printf("[INFO] RootNode[%d] Received Token[%d] from ChildNode[%d]\n",
                     pNode->getNodeId(), sMsgBuffer[0], sMsgStatus.MPI_SOURCE);
             fflush(stdout);
             sToken = sToken * sMsgBuffer[0];
@@ -293,7 +293,7 @@ ReturnCode initiateRootNodeProcess(Node* pNode)
                          MSG_TOKEN,
                          MPI_COMM_WORLD,
                          &sMsgStatus);
-                printf("[INFO] RootNode[%d] Received Token[%d] from ChildNode[%d].\n",
+                printf("[INFO] RootNode[%d] Received Token[%d] from ChildNode[%d]\n",
                         pNode->getNodeId(), sMsgBuffer[0], sMsgStatus.MPI_SOURCE);
                 fflush(stdout);
                 sToken = sToken * sMsgBuffer[0];
@@ -307,7 +307,7 @@ ReturnCode initiateRootNodeProcess(Node* pNode)
                 {
                     // WHITE Token received from all children
                     // inform master process about the completion
-                    printf("[INFO] RootNode[%d] Received all tokens from child nodes.\n",
+                    printf("[INFO] RootNode[%d] Received all tokens from child nodes\n",
                             pNode->getNodeId());
                     fflush(stdout);
                     int msg = 0;
@@ -336,14 +336,14 @@ ReturnCode initiateRootNodeProcess(Node* pNode)
                                  child,
                                  MSG_REPEAT,
                                  MPI_COMM_WORLD);
-                        printf("[INFO] RootNode[%d] Sent REPEAT Signal to ChildNode[%d].\n",
+                        printf("[INFO] RootNode[%d] Sent REPEAT Signal to ChildNode[%d]\n",
                                 pNode->getNodeId(), child);
                         fflush(stdout);
                     }
                     // reset the child nodes count
                     sNodeCountLeft = pNode->getChildNodesCount();
                     sToken = TOKEN_WHITE;
-                    // now wait for the child nodes to come back with token message.
+                    // now wait for the child nodes to come back with their tokens
                 }
             }
         }
@@ -382,12 +382,12 @@ ReturnCode initiateInternalNodeProcess(Node* pNode)
 
         if (MSG_REPEAT == sMsgStatus.MPI_TAG)
         {
-            printf("[INFO] InternalNode[%d] Received a REPEAT request from ParentNode[%d].\n",
+            printf("[INFO] InternalNode[%d] Received a REPEAT request from ParentNode[%d]\n",
                     pNode->getNodeId(), pNode->getParentNode());
             fflush(stdout);
             for (int child : sChildNodes)
             {
-                printf("[INFO] InternalNode[%d] Forwarding REPEAT signal to ChildNode[%d].\n",
+                printf("[INFO] InternalNode[%d] Forwarding REPEAT signal to ChildNode[%d]\n",
                         pNode->getNodeId(), child);
                 fflush(stdout);
                 int msg = 0;
