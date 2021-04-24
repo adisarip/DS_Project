@@ -15,7 +15,7 @@ There are many spanning tree based termination detection algorithms in the distr
 >- Using Kruskal's algorithm for constructing a MST from a given graph, using "Union-Find" data structure
 >- Using OpenMPI framework for simulating the distributed environment.
 >- Each process will denote as a node in the MST.
->- **<TODO>**
+>- **<... TODO ...\>**
 
 ## Environment Details
 > Operating System:  _Mac OSX / Linux_  
