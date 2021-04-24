@@ -21,16 +21,16 @@ def run_termination_detection(data_file):
 
     proc_count = int(no_of_nodes) + 1
 
-    print("[INFO] No of Nodes in the given graph:", no_of_nodes)
+    print("[INFO] No of Nodes in the given graph:", no_of_nodes, flush=True)
     print("[INFO] Initiating Termination Detection with "+ str(proc_count) +
-          " processes (1 process per node and 1 additional master/manager process).")
+          " processes (1 process per node and 1 additional master/manager process).",  flush=True)
 
     run_td_cmd = "mpirun -oversubscribe -np " + str(proc_count) + " " + STTD_BIN + " " + data_file
     os.system(run_td_cmd)
 
 def main(data_file):
     # build the binaries
-    print("[INFO] Building binaries ...")
+    print("[INFO] Building binaries ...",  flush=True)
     run_build_cmd = "make clean; make"
     os.system(run_build_cmd)
     # Intiate termination detection

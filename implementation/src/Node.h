@@ -4,7 +4,6 @@
 #define NODE_H
 
 #include <vector>
-#include <unordered_map>
 using namespace std;
 
 
@@ -56,6 +55,7 @@ public:
     int getParentNode();
     int getNextNode(int destinationNodeId);
     int getChildNodesCount();
+    void getChildNodes(vector<int>* pChildNodes);
 
     bool isLeafNode();
     bool isRootNode();

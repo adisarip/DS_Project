@@ -34,7 +34,7 @@ void Node::setNodeStatus(NodeStatus nodeStatus)
 
 void Node::setToken(Token token)
 {
-    mToken = (Token)(mToken * token);
+    mToken = (Token)token;
 }
 
 void Node::setRouteMap(int* buffer, int size)
@@ -72,14 +72,22 @@ int Node::getParentNode()
     return mRouteMap[mRootNode];
 }
 
+int Node::getNextNode(int destinationNodeId)
+{
+    return mRouteMap[destinationNodeId];
+}
+
 int Node::getChildNodesCount()
 {
     return mChildNodes.size();
 }
 
-int Node::getNextNode(int destinationNodeId)
+void Node::getChildNodes(vector<int>* pChildNodes)
 {
-    return mRouteMap[destinationNodeId];
+    for (int child : mChildNodes)
+    {
+        pChildNodes->push_back(child);
+    }
 }
 
 bool Node::isLeafNode()
