@@ -11,12 +11,14 @@
 #include "TerminationDetection.h"
 using namespace std;
 
+
 void getRandomSourceDestinationPair(ComputeMessage* pMessage, int worldSize)
 {
     srand(time(0));
     pMessage->srcNode = rand() % (worldSize) + 1;
     pMessage->dstNode = rand() % (worldSize) + 1;
 }
+
 
 // Read the data file
 // Create the graph and compute the MST
@@ -185,6 +187,7 @@ void configureNodeProcess(Node* pNode)
     }
 }
 
+
 // Create a Node object for each node process, and save the relevant data in it.
 void configureAndInitiateNodeProcess(int procId)
 {
@@ -304,6 +307,7 @@ ReturnCode initiateTerminationDetection(Node* pNode)
 
     return sRc;
 }
+
 
 // initiate and run root node process
 ReturnCode initiateRootNodeProcess(Node* pNode)
