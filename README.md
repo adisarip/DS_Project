@@ -95,7 +95,7 @@ There are many spanning tree based termination detection algorithms in the distr
 >```
 
 <p align="center">
-  <img src="./implementation/test/sttd_graph_mst_2.png" />
+  <img src="./implementation/test/sttd_graph_mst.png" />
 </p>
 
 **_Sample Execution Run:_**
