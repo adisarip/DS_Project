@@ -21,7 +21,7 @@ There are many spanning tree based termination detection algorithms in the distr
 > Additonal Packages : _OpenMPI_  
 
 ## Source Tree
->- Given below is the source tree for the current assignment.
+>- Given below is the source tree for the current project.
 >```
 > ├── Makefile
 > ├── README.md
@@ -33,17 +33,20 @@ There are many spanning tree based termination detection algorithms in the distr
 > │   └── README.md
 > ├── run_td.py
 > ├── src
-> │   ├── Graph.cpp
-> │   ├── Graph.h
-> │   ├── Node.cpp
-> │   ├── Node.h
-> │   ├── TerminationDetection.cpp
-> │   └── README.md
+> │   ├── README.md
+> │   ├── Graph.cpp
+> │   ├── Graph.h
+> │   ├── Node.cpp
+> │   ├── Node.h
+> │   ├── TerminationDetection.cpp
+> │   ├── TerminationDetection.h
+> │   └── main.cpp
 > └── test
 >     ├── README.md
->     └── input.txt
+>     ├── input_1.txt
+>     └── input_2.txt
 >
-> 5 directories, 14 files
+> 5 directories, 17 files
 >```
 
 >- './src/' : Directory containing all the source code & utility files.
@@ -52,8 +55,8 @@ There are many spanning tree based termination detection algorithms in the distr
 >- './test/' : Directory containing the test data
 >- Graph.h/cpp : A class implementing the graph algorithm for computing Minimum Spanning Tree.
 >- Node.h/cpp  : A class defining the Process Node and its internal methods.
->- TerminationDetection.cpp : Main file to compute the MST and initiate the termination detection algorithm.
->- Run the command **'make clean; make'** from the parent directory to create the executable binaries.
+>- TerminationDetection.h/cpp : Files having all the computations/algorithms for termination detection.
+>- main.cpp : File having the main() function from the program is initiated.
 
 ## Input Data Format & Execution Runs
 

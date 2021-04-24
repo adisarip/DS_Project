@@ -30,13 +30,6 @@ enum Token
     TOKEN_WHITE = 1, // A token is white by default
 };
 
-enum ReturnCode
-{
-    RC_SUCCESS = 0,
-    RC_FAILURE = 1,
-    RC_RETRY   = 2,
-};
-
 class Node
 {
 public:
