@@ -281,25 +281,9 @@ ReturnCode initiateRootNodeProcess(Node* pNode)
             printf("[INFO] RootNode[%d] Received Token[%d] from ChildNode[%d]\n",
                     pNode->getNodeId(), sMsgBuffer[0], sMsgStatus.MPI_SOURCE);
             fflush(stdout);
+
             sToken = sToken * sMsgBuffer[0];
             sNodeCountLeft--;
-            while (sNodeCountLeft > 0)
-            {
-                memset(sMsgBuffer, -1, sizeof(int) * MAX_MSG_SIZE);
-                MPI_Recv(sMsgBuffer,
-                         MAX_MSG_SIZE,
-                         MPI_INT,
-                         MPI_ANY_SOURCE,
-                         MSG_TOKEN,
-                         MPI_COMM_WORLD,
-                         &sMsgStatus);
-                printf("[INFO] RootNode[%d] Received Token[%d] from ChildNode[%d]\n",
-                        pNode->getNodeId(), sMsgBuffer[0], sMsgStatus.MPI_SOURCE);
-                fflush(stdout);
-                sToken = sToken * sMsgBuffer[0];
-                sNodeCountLeft--;
-            }
-
             if (sNodeCountLeft == 0)
             {
                 sToken = sToken * pNode->getToken();
@@ -407,25 +391,9 @@ ReturnCode initiateInternalNodeProcess(Node* pNode)
             printf("[INFO] InternalNode[%d] Received Token[%d] from ChildNode[%d]\n",
                     pNode->getNodeId(), sMsgBuffer[0], sMsgStatus.MPI_SOURCE);
             fflush(stdout);
+
             sToken = sToken * sMsgBuffer[0];
             sNodeCountLeft--;
-            while (sNodeCountLeft > 0)
-            {
-                memset(sMsgBuffer, -1, sizeof(int) * MAX_MSG_SIZE);
-                MPI_Recv(sMsgBuffer,
-                         MAX_MSG_SIZE,
-                         MPI_INT,
-                         MPI_ANY_SOURCE,
-                         MSG_TOKEN,
-                         MPI_COMM_WORLD,
-                         &sMsgStatus);
-                printf("[INFO] InternalNode[%d] Received Token[%d] from ChildNode[%d]\n",
-                        pNode->getNodeId(), sMsgBuffer[0], sMsgStatus.MPI_SOURCE);
-                fflush(stdout);
-                sToken = sToken * sMsgBuffer[0];
-                sNodeCountLeft--;
-            }
-
             if (sNodeCountLeft == 0)
             {
                 // forward the token to parent node
