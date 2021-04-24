@@ -2,16 +2,20 @@
 # Spanning Tree Based Termination Detection
 
 ## Introduction
-There are many spanning tree based termination detection algorithms in the distributed systems literature. Of all of them below mentioned are shortlisted for the discussion (temporarily adding details - we will update again later).
+There are many spanning tree based termination detection algorithms in the distributed systems literature. Of all of them below mentioned are shortlisted for analysis:
 >- Rodney. W. Topor
 >- Chandrashekhar Venkatesan
 >- R.K Arora & M.N Gupta
 
+Rodney.W.Topor <Introduction ... TODO>  
+Chandrashekhar Venkatesan <Introduction ... TODO>  
+R.K Arora & M.N Gupta <Introduction ... TODO>  
+
 ## Solution Approach
 >- Using Kruskal's algorithm for constructing a MST from a given graph, using "Union-Find" data structure
 >- Using OpenMPI framework for simulating the distributed environment.
->- Each process will denote a node in the MST.
->- **<to be continued ...>**
+>- Each process will denote as a node in the MST.
+>- **<TODO>**
 
 ## Environment Details
 > Operating System:  _Mac OSX / Linux_  
@@ -96,7 +100,7 @@ There are many spanning tree based termination detection algorithms in the distr
 > **./run_td.py <input_file\> <no_of_processes\>**
 >
 >```
-> $ ./run_td.py test/input.txt
+> $ ./run_td.py test/input_1.txt
 > [INFO] Building binaries ...
 > [MAKE] Cleaning all the object files and binaries.
 > [MAKE] Compiled src/Graph.cpp successfully.
