@@ -94,10 +94,14 @@ There are many spanning tree based termination detection algorithms in the distr
 > 9 10 17
 >```
 
+<p align="center">
+  <img src="./implementation/test/sttd_graph_mst.png" />
+</p>
+
 **_Sample Execution Run:_**
 >- Use the wrapper script **run_td.py** to build and execute the binaries.
 >- Go to the implementation directory and run the following command  
-> **./run_td.py <input_file\> <no_of_processes\>**
+> **./run_td.py <input_file\>**
 >
 >```
 > $ ./run_td.py test/input_1.txt
