@@ -7,9 +7,9 @@ There are many spanning tree based termination detection algorithms in the distr
 >- Chandrashekhar Venkatesan
 >- R.K Arora & M.N Gupta
 
-Rodney.W.Topor <Introduction ... TODO>  
-Chandrashekhar Venkatesan <Introduction ... TODO>  
-R.K Arora & M.N Gupta <Introduction ... TODO>  
+> Rodney.W.Topor <Introduction ... TODO>  
+> Chandrashekhar Venkatesan <Introduction ... TODO>  
+> R.K Arora & M.N Gupta <Introduction ... TODO>  
 
 ## Solution Approach
 >- Using Kruskal's algorithm for constructing a MST from a given graph, using "Union-Find" data structure
