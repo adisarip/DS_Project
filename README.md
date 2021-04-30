@@ -10,13 +10,13 @@ There are many spanning tree based termination detection algorithms in the distr
 
 Below mentioned is the brief introduction on the above three algorithms.
 
-> **Rodney.W.Topor**
+> **Rodney.W.Topor**  
 > Each leaf process after it has terminated, sends its token to its parent. When a parent process terminates and after it has received a token from each of its children, it sends a token to its parent. This way, each process indicates to its parent process that the sub-tree below it has terminated. In a similar manner, the tokens get propagated to the root. The root of the tree concludes that termination has occurred, after it has received a token from each of its children. In order to enable the root node to know that a node in its children’s sub-tree, that was assumed to be terminated, has become active due to a message, a coloring scheme for tokens and nodes is used. All tokens are initialized to WHITE. If a process had sent a message to some other process, it sends a BLACK token to its parent on termination, otherwise, it sends a WHITE token on termination.
 
-> **Chandrashekhar Venkatesan**
+> **Chandrashekhar Venkatesan**  
 >
 
-> **R.K Arora & M.N Gupta**
+> **R.K Arora & M.N Gupta**  
 >
 
 ## Solution Approach
