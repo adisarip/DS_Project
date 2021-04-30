@@ -2,7 +2,7 @@
 
 # Spanning Tree Based Termination Detection
 
-**NOTE: Presentation video is available in the "presentation" folder of this repository.**
+### **NOTE: Presentation video is available in the "presentation" folder of this repository.**
 
 ## Introduction
 There are many spanning tree based termination detection algorithms in the distributed systems literature. Of all of them we have shortlisted the following three algorithms for analysis:
