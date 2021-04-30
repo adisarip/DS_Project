@@ -89,8 +89,7 @@ Below mentioned is the brief introduction on the above three algorithms.
 > │   └── main.cpp
 > └── test
 >     ├── input_1.txt
->     ├── input_2.txt
->     └── sttd_graph_mst.png
+>     └── input_2.txt
 >```
 
 >- './src/' : Directory containing all the source code & utility files.
@@ -102,6 +101,10 @@ Below mentioned is the brief introduction on the above three algorithms.
 >- TerminationDetection.h/cpp : Files having all the computations/algorithms for termination detection.
 >- main.cpp : File having the main() function from the program is initiated.
 >- run_td.py : A wrapper script to compile & build all the binaries, and also initiate the execution run.
+
+<p align="center">
+  <img src="./implementation/test/sttd_design.png" />
+</p>
 
 ## Input Data Format & Execution Runs
 
